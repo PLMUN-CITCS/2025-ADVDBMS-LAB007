@@ -1,7 +1,7 @@
-2025-ADVDBMS-WK02S0E02
+2025-ADVDBMS-WK02S0E05
 Week 02 - Review on Database Concepts
 
-Exercise # 04 - Guided Coding Exercise: Creating Tables with Primary and Foreign Keys
+Exercise # 05 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses
 
 ## **Instructions**
 
@@ -77,77 +77,89 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Exercise # 04 - Guided Coding Exercise: Creating Tables with Primary and Foreign Keys**
+**Exercise # 05 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses**
 
    **Objective:**
-   Learn how to create tables with primary and foreign key relationships in SQL. This exercise demonstrates how to link two tables together, ensuring referential integrity.
+   Learn to retrieve data from one or more tables using `SELECT`, `FROM`, and `WHERE` clauses. This exercise focuses on basic queries, conditional queries, and joins.
 
    **Folder Structure:**
    ```
    university_db/
-   ├── create_courses_table.sql
-   └── create_enrollments_table.sql
+   ├── select_all_students.sql
+   ├── select_students_by_enrollment_date.sql
+   └── join_students_and_enrollments.sql
    ```
 
    **File Naming Convention:**
-   - `create_courses_table.sql`: Contains the SQL statement for creating the Courses table.
-   - `create_enrollments_table.sql`: Contains the SQL statement for creating the Enrollments table with foreign key constraints.
+   - `select_all_students.sql`: Contains the query to select all columns from the `Students` table.
+   - `select_students_by_enroll_date.sql`: Contains the query to select students based on their enrollment date.
+   - `join_students_and_enrollments.sql`: Contains the query to join `Students` and `Enrollments` tables.
 
    **Notable Observations (to be discussed after completing the exercise):**
-   - Referential Integrity: Foreign keys enforce referential integrity. This means that you cannot insert a record into the `Enrollments` table with a `StudentID` or `CourseID` that does not exist in the `Students` or `Courses` tables, respectively. This helps prevent data inconsistencies.
-   Order of Table Creation: The order in which you create tables with foreign key relationships is crucial. The referenced tables (parent tables) must exist before the referencing table (child table).
-   - Data Types: The data types of the foreign key columns (`StudentID` and `CourseID` in Enrollments) must match the data types of the corresponding primary key columns in the `Students` and `Courses` tables.
-   - Composite Keys: You could also have a composite key in the `Enrollments` table, for example, `(StudentID, CourseID)` to prevent a student from enrolling in the same course multiple times. You would then make that combination `UNIQUE` or `PRIMARY KEY`.
-   - Foreign Key Constraints: Explore different foreign key constraint options, such as `ON DELETE CASCADE` or `ON DELETE SET NULL`, which control what happens when a record in the parent table is deleted.
-   - Database Design: This exercise demonstrates a fundamental database design principle. Proper use of primary and foreign keys is essential for creating relational databases.
-   - ER Diagrams: Entity-relationship (ER) diagrams are a useful tool for visualizing the relationships between tables in a database.
+   - `SELECT` Clause: The `SELECT` clause specifies which columns to retrieve. `*` selects all columns.
+   - `FROM` Clause: The `FROM` clause specifies the table(s) to retrieve data from.
+   - `WHERE` Clause: The `WHERE` clause filters the data based on a specified condition.
+   - Joins: Joins combine data from multiple tables based on a related column. Understanding different join types (INNER, LEFT, RIGHT, FULL) is crucial.
+   - Aliases: Aliases make queries easier to read and write, especially when dealing with multiple tables.
+   - SQL Syntax: Ensure you are using the correct SQL syntax for your specific database system.
+   - Data Exploration: Use `SELECT` statements to explore your data and verify that it is being stored correctly. This is a fundamental part of database development.
+   - Filtering and Sorting: Explore other `WHERE` clause conditions (e.g., `LIKE`, `BETWEEN`, `IN`, `NOT IN`) and learn how to sort results using the `ORDER BY` clause.
       
    **Step-by-Step Instructions:**
 
    1. Setting up the Environment
-      - Ensure you have a SQL database management system installed and that you've connected to the `UniversityDB` database (created in Problem 1) and created the `Students` table (created in Problem 2). The `Students` table will be referenced by a foreign key in this exercise.
-      - Create the two SQL files as shown in the folder structure above within the `university_db` directory.
+   - Ensure you have a SQL database management system installed, connected to the `UniversityDB` database, and that the `Students` and `Enrollments` tables (and potentially `Courses` table if you want to include course information in the join) have been created and populated with data from the previous exercises.
+   - Create the three SQL files as shown in the folder structure above within the `university_db` directory.
       
-   2. `create_courses_table.sql` (Create Courses Table):
-      - Open `create_courses_table`.sql in a text editor.
-      - Create the Courses table:
+   2. `select_all_students.sql` (Select All Students):
+      - Open `select_all_students.sql` in a text editor.
+      - Select all columns from Students:
       ```SQL
-      -- Step 1: Create the Courses table
-      CREATE TABLE Courses (
-          CourseID INT PRIMARY KEY AUTO_INCREMENT, -- Or SERIAL/IDENTITY as needed for your DBMS
-          CourseName VARCHAR(100) NOT NULL
-      );
+      -- Step 1: Select all columns from Students
+      SELECT * FROM Students;
       ```
       
       - Important Note: Use `AUTO_INCREMENT` (MySQL), `SERIAL` (PostgreSQL), or `IDENTITY` (SQL Server) for the `CourseID` as appropriate for your database system.
 
-      - Save the `create_courses_table.sql` file.
+      - Save the `select_all_students.sql` file.
       
-   3. `create_enrollments_table.sql` (Create Enrollments Table):
-      - Open `create_enrollments_table.sql` in a text editor.
-      - Create the `Enrollments` table with foreign key constraints:
+   3. `select_students_by_enrollment_date.sql` (Select Students by Enrollment Date):
+      - Open `select_students_by_enrollment_date.sql` in a text editor.
+      - Select FirstName and LastName for students enrolled on '2023-09-01':
       ```SQL
-      -- Step 2: Update the Email for Bob Johnson
-      -- Step 2: Create the Enrollments table with foreign key constraints
-      CREATE TABLE Enrollments (
-          EnrollmentID INT PRIMARY KEY AUTO_INCREMENT, -- Or SERIAL/IDENTITY
-          StudentID INT,
-          CourseID INT,
-          EnrollmentDate DATE,
-          CONSTRAINT fk_student FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
-          CONSTRAINT fk_course FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
-      );
+      -- Step 2: Select FirstName and LastName for students enrolled on '2023-09-01'
+      SELECT FirstName, LastName
+      FROM Students
+      WHERE EnrollmentDate = '2023-09-01';
       ```
-         - Important Note: The order in which you create the tables is important. You must create the `Courses` and `Students` tables before you create the `Enrollments` table because the `Enrollments` table references them via foreign keys.
-         - The `fk_student` and `fk_course` are names given to the foreign key constraints. You can choose descriptive names.
-         - The `REFERENCES Students(StudentID)` and `REFERENCES Courses(CourseID)` clauses specify the tables and columns that the foreign keys reference.
       
-      - Save the `create_enrollments_table.sql` file.
-
-   4. Executing the SQL Scripts:
+      - Save the `select_students_by_enrollment_date.sql` file.
+      
+   4. `join_students_and_enrollments.sql` (Join Students and Enrollments):
+      - Open `join_students_and_enrollments.sql` in a text editor.
+      - Join Students and Enrollments to list student enrollments:
+      ```SQL
+      -- Step 3: Join Students and Enrollments to list student enrollments
+      SELECT s.FirstName, s.LastName, e.EnrollmentDate, c.CourseName  -- Include CourseName
+      FROM Students s
+      INNER JOIN Enrollments e ON s.StudentID = e.StudentID
+      INNER JOIN Courses c ON e.CourseID = c.CourseID; -- Join with Courses table
+      
+      -- Alternative (older, implicit join syntax - less preferred):
+      -- SELECT s.FirstName, s.LastName, e.EnrollmentDate, c.CourseName
+      -- FROM Students s, Enrollments e, Courses c
+      -- WHERE s.StudentID = e.StudentID AND e.CourseID = c.CourseID;
+      ```
+         - Important Note: The preferred way to write joins is using the `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, etc., keywords (explicit join syntax). The older comma-separated `FROM` clause with the join condition in the `WHERE` clause (implicit join syntax) is still supported but is considered less readable and maintainable, especially for complex joins.
+         - Aliases (`s`, `e`, `c`) are used to make the query more concise and readable.
+         - This example joins with the `Courses` table as well to show the `CourseName`. If you haven't created and populated the `Courses` table, you can remove `c.CourseName` from the `SELECT` list and the `INNER JOIN Courses` clause.
+      - Save the `join_students_and_enrollments.sql` file.
+   
+   5. Executing the SQL Scripts:
    - Open your SQL client and connect to the `UniversityDB` database.
-   - Create Courses Table: Execute the `create_courses_table.sql` script.
-   - Create Enrollments Table: Execute the `create_enrollments_table.sql` script.
+   - Select All: Execute the `select_all_students.sql` script.
+   - Select by Date: Execute the `select_students_by_enrollment_date.sql` script.
+   - Join: Execute the `join_students_and_enrollments.sql` script.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
