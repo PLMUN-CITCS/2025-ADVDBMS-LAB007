@@ -1,4 +1,4 @@
-2025-ADVDBMS-WK02S0E05
+2025-ADVDBMS-WK02S02E05
 Week 02 - Review on Database Concepts
 
 Exercise # 05 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses
