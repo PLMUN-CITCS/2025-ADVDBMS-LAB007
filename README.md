@@ -117,6 +117,8 @@ Only perform this if this is the first time you will setup your Git Environment
       - Open `select_all_students.sql` in a text editor.
       - Select all columns from Students:
       ```SQL
+      USE `UniversityDB`;
+      
       -- Step 1: Select all columns from Students
       SELECT * FROM `Students`;
       
@@ -128,7 +130,9 @@ Only perform this if this is the first time you will setup your Git Environment
       - Open `select_students_by_enrollment_date.sql` in a text editor.
       - Select `FirstName` and `LastName` for students enrolled on '2023-09-01':
       ```SQL
-      -- Step 2: Select `FirstName` and `LastName` for students enrolled on '2023-09-01'
+      USE `UniversityDB`;
+      
+      -- Step 2: Select FirstName and LastName for students enrolled on '2023-09-01'
       SELECT `FirstName`, `LastName`
       FROM `Students`
       WHERE `EnrollmentDate` = '2023-09-01';
@@ -141,16 +145,18 @@ Only perform this if this is the first time you will setup your Git Environment
       - Open `join_students_and_enrollments.sql` in a text editor.
       - Join Students and Enrollments to list student enrollments:
       ```SQL
+      USE `UniversityDB`;
+      
       -- Step 3: Join Students and Enrollments to list student enrollments
-      SELECT s.`FirstName`, s.`LastName`, e.`EnrollmentDate`, c.`CourseName`  -- Include `CourseName`
-      FROM `Students` s
-      INNER JOIN `Enrollments` e ON s.`StudentID` = e.`StudentID`
-      INNER JOIN `Courses` c ON e.`CourseID` = c.`CourseID`; -- Join with Courses table
+      SELECT `s`.`FirstName`, `s`.`LastName`, `e`.`EnrollmentDate`, `c`.`CourseName`  -- Include CourseName
+      FROM `Students` AS `s`
+      INNER JOIN `Enrollments` AS `e` ON `s`.`StudentID` = `e`.`StudentID`
+      INNER JOIN `Courses` AS `c` ON `e`.`CourseID` = `c`.`CourseID`; -- Join with Courses table
       
       -- Alternative (older, implicit join syntax - less preferred):
-      -- SELECT s.`FirstName`, s.`LastName`, e.`EnrollmentDate`, c.`CourseName`
-      -- FROM `Students` s, `Enrollments` e, `Courses` c
-      -- WHERE s.`StudentID` = e.`StudentID` AND e.`CourseID` = c.`CourseID`;
+      -- SELECT s.FirstName, s.LastName, e.EnrollmentDate, c.CourseName
+      -- FROM Students s, Enrollments e, Courses c
+      -- WHERE s.StudentID = e.StudentID AND e.CourseID = c.CourseID;
       
       ```
          - Important Note: The preferred way to write joins is using the `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, etc., keywords (explicit join syntax). The older comma-separated `FROM` clause with the join condition in the `WHERE` clause (implicit join syntax) is still supported but is considered less readable and maintainable, especially for complex joins.
