@@ -1,7 +1,7 @@
-2025-ADVDBMS-WK02S02E05
+# **2025-ADVDBMS-LAB007**
 Week 02 - Review on Database Concepts
 
-Exercise # 05 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses
+Laboratory # 07 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses
 
 ## **Instructions**
 
@@ -77,7 +77,7 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Exercise # 05 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses**
+**Laboratory # 07 - Guided Coding Exercise: Querying Data with SELECT, FROM, and WHERE Clauses**
 
    **Objective:**
    Learn to retrieve data from one or more tables using `SELECT`, `FROM`, and `WHERE` clauses. This exercise focuses on basic queries, conditional queries, and joins.
@@ -96,15 +96,17 @@ Only perform this if this is the first time you will setup your Git Environment
    - `join_students_and_enrollments.sql`: Contains the query to join `Students` and `Enrollments` tables.
 
    **Notable Observations (to be discussed after completing the exercise):**
-   - `SELECT` Clause: The `SELECT` clause specifies which columns to retrieve. `*` selects all columns.
-   - `FROM` Clause: The `FROM` clause specifies the table(s) to retrieve data from.
-   - `WHERE` Clause: The `WHERE` clause filters the data based on a specified condition.
-   - Joins: Joins combine data from multiple tables based on a related column. Understanding different join types (INNER, LEFT, RIGHT, FULL) is crucial.
-   - Aliases: Aliases make queries easier to read and write, especially when dealing with multiple tables.
-   - SQL Syntax: Ensure you are using the correct SQL syntax for your specific database system.
-   - Data Exploration: Use `SELECT` statements to explore your data and verify that it is being stored correctly. This is a fundamental part of database development.
-   - Filtering and Sorting: Explore other `WHERE` clause conditions (e.g., `LIKE`, `BETWEEN`, `IN`, `NOT IN`) and learn how to sort results using the `ORDER BY` clause.
-      
+   - SELECT: What You Want to See: The SELECT clause is your way of specifying which columns you want to retrieve. * is a shortcut for "everything," but often you'll want to be more selective.
+   - FROM: Where to Look: The FROM clause tells the database which table(s) to pull data from. It's the starting point of your query.
+   - WHERE: Filtering the Results: The WHERE clause is your filter. It lets you narrow down the results based on specific conditions. Think of it as a sieve for your data.
+   - Joins: Combining Forces: Joins are essential for working with related data across multiple tables. Understanding the different types of joins (INNER, LEFT, RIGHT, FULL) is crucial for getting the information you need.
+   - Aliases: Short and Sweet: Aliases make your queries more readable, especially when dealing with long table names or complex joins. They're like nicknames for your tables.
+
+   **SQL Script Best Practices**
+   - Data Exploration is Key: Use SELECT statements to explore your data. Get to know your tables and what information they contain. This is a fundamental part of database development.
+   - Filtering and Sorting Power: Master the WHERE clause and its various conditions (LIKE, BETWEEN, IN, etc.). Learn how to sort your results with ORDER BY. These are essential tools for data analysis.
+   - Explicit Joins: The Modern Way: Use the explicit join syntax (INNER JOIN, LEFT JOIN, etc.). It's clearer, more maintainable, and the preferred way to write joins. Avoid the older, implicit join syntax if you can.
+
    **Step-by-Step Instructions:**
 
    1. Setting up the Environment
