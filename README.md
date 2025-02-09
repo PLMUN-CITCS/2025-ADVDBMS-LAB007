@@ -85,12 +85,16 @@ Only perform this if this is the first time you will setup your Git Environment
    **Folder Structure:**
    ```
    university_db/
+   ├── insert_courses.sql
+   ├── insert_enrollments.sql
    ├── select_all_students.sql
    ├── select_students_by_enrollment_date.sql
    └── join_students_and_enrollments.sql
    ```
 
    **File Naming Convention:**
+   - `insert_courses.sql`: Inserts sample course data into the Courses table for join query testing.
+   - `insert_enrollments.sql`: Inserts sample enrollment data into the Enrollments table, linking students to courses with enrollment dates.  Requires existing Students and Courses records.
    - `select_all_students.sql`: Contains the query to select all columns from the `Students` table.
    - `select_students_by_enroll_date.sql`: Contains the query to select students based on their enrollment date.
    - `join_students_and_enrollments.sql`: Contains the query to join `Students` and `Enrollments` tables.
@@ -112,27 +116,64 @@ Only perform this if this is the first time you will setup your Git Environment
    1. Setting up the Environment
    - Ensure you have a SQL database management system installed, connected to the `UniversityDB` database, and that the `Students` and `Enrollments` tables (and potentially `Courses` table if you want to include course information in the join) have been created and populated with data from the previous exercises.
    - Create the three SQL files as shown in the folder structure above within the `university_db` directory.
-      
-   2. `select_all_students.sql` (Select All Students):
+   
+   2. `insert_courses.sql` (Insert Courses Data)
+      - Open `insert_courses.sql` in a text editor.
+      - Select data into the courses table:
+      ```SQL
+      USE `UniversityDB`;
+
+      -- Step 1: Insert data into courses table
+      INSERT INTO `Courses` (`CourseName`)
+      VALUES
+         ('Introduction to Computer Science'),
+         ('Calculus I'),
+         ('Modern World History'),
+         ('English Literature'),
+         ('Data Structures');
+
+      ```
+      - Save the `insert_courses.sql` file.
+
+   3. `insert_enrollments.sql` (Insert Enrollments Data)
+      - Open `insert_enrollments.sql` in a text editor.
+      - Select data into the enrollments table:
+      ```SQL
+      USE `UniversityDB`;
+
+      -- Step 2: Insert data into enrollments table
+      INSERT INTO `Enrollments` (`StudentID`, `CourseID`, `EnrollmentDate`)
+      VALUES
+         (1, 1, '2023-09-01'),
+         (2, 2, '2023-09-01'),
+         (1, 3, '2023-09-01'),
+         (2, 4, '2023-09-02'),
+         (2, 5, '2023-09-03');
+
+
+      ```
+      - Save the `insert_enrollments.sql` file.
+
+   4. `select_all_students.sql` (Select All Students):
       - Open `select_all_students.sql` in a text editor.
       - Select all columns from Students:
       ```SQL
       USE `UniversityDB`;
       
-      -- Step 1: Select all columns from Students
+      -- Step 3: Select all columns from Students
       SELECT * FROM `Students`;
       
       ```
       
       - Save the `select_all_students.sql` file.
       
-   3. `select_students_by_enrollment_date.sql` (Select Students by Enrollment Date):
+   5. `select_students_by_enrollment_date.sql` (Select Students by Enrollment Date):
       - Open `select_students_by_enrollment_date.sql` in a text editor.
       - Select `FirstName` and `LastName` for students enrolled on '2023-09-01':
       ```SQL
       USE `UniversityDB`;
       
-      -- Step 2: Select FirstName and LastName for students enrolled on '2023-09-01'
+      -- Step 4: Select FirstName and LastName for students enrolled on '2023-09-01'
       SELECT `FirstName`, `LastName`
       FROM `Students`
       WHERE `EnrollmentDate` = '2023-09-01';
@@ -141,13 +182,13 @@ Only perform this if this is the first time you will setup your Git Environment
       
       - Save the `select_students_by_enrollment_date.sql` file.
       
-   4. `join_students_and_enrollments.sql` (Join Students and Enrollments):
+   6. `join_students_and_enrollments.sql` (Join Students and Enrollments):
       - Open `join_students_and_enrollments.sql` in a text editor.
       - Join Students and Enrollments to list student enrollments:
       ```SQL
       USE `UniversityDB`;
       
-      -- Step 3: Join Students and Enrollments to list student enrollments
+      -- Step 5: Join Students and Enrollments to list student enrollments
       SELECT `s`.`FirstName`, `s`.`LastName`, `e`.`EnrollmentDate`, `c`.`CourseName`  -- Include CourseName
       FROM `Students` AS `s`
       INNER JOIN `Enrollments` AS `e` ON `s`.`StudentID` = `e`.`StudentID`
@@ -164,7 +205,7 @@ Only perform this if this is the first time you will setup your Git Environment
          - This example joins with the `Courses` table as well to show the `CourseName`. If you haven't created and populated the `Courses` table, you can remove `c.CourseName` from the `SELECT` list and the `INNER JOIN Courses` clause.
       - Save the `join_students_and_enrollments.sql` file.
    
-   5. Executing the SQL Scripts:
+   7. Executing the SQL Scripts:
    - Open your SQL client and connect to the `UniversityDB` database.
    - Select All: Execute the `select_all_students.sql` script.
    - Select by Date: Execute the `select_students_by_enrollment_date.sql` script.
