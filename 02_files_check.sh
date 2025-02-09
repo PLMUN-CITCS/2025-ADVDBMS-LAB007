@@ -2,7 +2,7 @@
 
 declare -a files
 directory="university_db"
-SQL_FILES=("setup.sql" "select_all_students.sql" "select_students_by_enrollment_date.sql" "join_students_and_enrollments.sql") # Array of filenames
+SQL_FILES=("setup.sql" "select_all_students.sql" "select_students_by_enrollment_date.sql" "join_students_and_enrollments.sql" "insert_courses.sql" "insert_enrollments.sql") # Array of filenames
 
 for file in "${files[@]}"; do  # Important: Quote "${files[@]}"
 filepath="$directory/$file" # Construct the full path
