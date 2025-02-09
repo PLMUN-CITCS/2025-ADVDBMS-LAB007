@@ -100,16 +100,17 @@ Only perform this if this is the first time you will setup your Git Environment
    - `join_students_and_enrollments.sql`: Contains the query to join `Students` and `Enrollments` tables.
 
    **Notable Observations (to be discussed after completing the exercise):**
-   - SELECT: What You Want to See: The SELECT clause is your way of specifying which columns you want to retrieve. * is a shortcut for "everything," but often you'll want to be more selective.
-   - FROM: Where to Look: The FROM clause tells the database which table(s) to pull data from. It's the starting point of your query.
-   - WHERE: Filtering the Results: The WHERE clause is your filter. It lets you narrow down the results based on specific conditions. Think of it as a sieve for your data.
-   - Joins: Combining Forces: Joins are essential for working with related data across multiple tables. Understanding the different types of joins (INNER, LEFT, RIGHT, FULL) is crucial for getting the information you need.
-   - Aliases: Short and Sweet: Aliases make your queries more readable, especially when dealing with long table names or complex joins. They're like nicknames for your tables.
+   - SELECT is Your Palette: It dictates which columns you retrieve. * is a quick way for everything, but often you'll want to be specific for performance and clarity.
+   - FROM is Your Canvas: It specifies the table(s) you're drawing data from. It's the foundation of your query.
+   - WHERE is Your Filter: It refines your results based on conditions. Think of it as a magnifying glass, focusing on the data you need.
+   - Joins: Connecting the Dots: Joins are crucial for combining data from related tables. Master the different join types (INNER, LEFT, RIGHT, FULL) to get the most out of your database.
+   - Aliases: Your Shorthand: Aliases make your queries easier to read and write, especially when dealing with multiple tables or complex joins. They're like nicknames for your tables.
 
    **SQL Script Best Practices**
-   - Data Exploration is Key: Use SELECT statements to explore your data. Get to know your tables and what information they contain. This is a fundamental part of database development.
-   - Filtering and Sorting Power: Master the WHERE clause and its various conditions (LIKE, BETWEEN, IN, etc.). Learn how to sort your results with ORDER BY. These are essential tools for data analysis.
-   - Explicit Joins: The Modern Way: Use the explicit join syntax (INNER JOIN, LEFT JOIN, etc.). It's clearer, more maintainable, and the preferred way to write joins. Avoid the older, implicit join syntax if you can.
+   - Data Exploration First: Use SELECT statements to familiarize yourself with your data. Knowing your data is the first step to querying it effectively.
+   - Filtering and Sorting Mastery: Become proficient with the WHERE clause and its various conditions (LIKE, BETWEEN, IN, NOT IN, etc.). Learn how to sort your results using ORDER BY. These are essential for data analysis.
+   - Explicit Joins: The Professional Way: Always use the explicit join syntax (INNER JOIN, LEFT JOIN, etc.). It's clearer, more maintainable, and the industry standard. Avoid the older, implicit join syntax whenever possible.
+   - Populate Before Querying: Remember to insert data into your tables before you try to query it. The insert_courses.sql and insert_enrollments.sql scripts are essential for setting up the data for your join_students_and_enrollments.sql query. This is a crucial step that's easy to overlook.
 
    **Step-by-Step Instructions:**
 
