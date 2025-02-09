@@ -119,6 +119,7 @@ Only perform this if this is the first time you will setup your Git Environment
       ```SQL
       -- Step 1: Select all columns from Students
       SELECT * FROM `Students`;
+      
       ```
       
       - Save the `select_all_students.sql` file.
@@ -131,6 +132,7 @@ Only perform this if this is the first time you will setup your Git Environment
       SELECT `FirstName`, `LastName`
       FROM `Students`
       WHERE `EnrollmentDate` = '2023-09-01';
+      
       ```
       
       - Save the `select_students_by_enrollment_date.sql` file.
@@ -149,6 +151,7 @@ Only perform this if this is the first time you will setup your Git Environment
       -- SELECT s.`FirstName`, s.`LastName`, e.`EnrollmentDate`, c.`CourseName`
       -- FROM `Students` s, `Enrollments` e, `Courses` c
       -- WHERE s.`StudentID` = e.`StudentID` AND e.`CourseID` = c.`CourseID`;
+      
       ```
          - Important Note: The preferred way to write joins is using the `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, etc., keywords (explicit join syntax). The older comma-separated `FROM` clause with the join condition in the `WHERE` clause (implicit join syntax) is still supported but is considered less readable and maintainable, especially for complex joins.
          - Aliases (`s`, `e`, `c`) are used to make the query more concise and readable.
